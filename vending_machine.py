@@ -3,7 +3,20 @@
 # Upper Canada College
 # Date: September 20 2019
 
+numOfChocolatebars = 10
+numOfChips = 10
+numOfSoda = 10
+numOfGatorade = 10
+numOfWater = 10
 
+
+# m represents...
+# p represents...
+# "inp" represents the option chosedn by the user
+# ???? represents the amount of each item we are requesting
+
+# input is examined and we will ignore the $ sign
+#
 def user_input():
   while True:
     money = input("Enter money: ")
@@ -19,11 +32,11 @@ def user_input():
 def item_selection():
   while True:
     print('\n')
-    print("1. Item 1 price $1.50")
-    print("2. Item 2 price $2.50")
-    print("3. Item 3 price $3.50")
-    print("4. Item 4 price $4.50")
-    print("5. Item 5 price $5.50")
+    print("1. Chocolate bar $1.50")
+    print("2. Chips $1.50")
+    print("3. Soda $2.50")
+    print("4. Gatorade $2.50")
+    print("5. Water $2.50")
     print("Enter item number to purchase:")
  
     inp = input()
@@ -42,25 +55,27 @@ def purchase (inp, m):
   if inp == 1:
      price = 1.5
   elif inp == 2:
-     price = 2.5
+     price = 1.5
   elif inp == 3:
-     price = 3.5
+     price = 2.5
   elif inp == 4:
-     price = 4.5
+     price = 2.5
   else:
-     price = 5.5
+     price = 2.5
  
   if m < price:
     print("You do not have sufficient money, try again ")
     return 0
   else:
     print("Thanks - your change is $",m-price)
-    return 1
 
 
 while True:
   m = user_input()
+  
   print("You have entered $",m)
+  NumItems = int(input ("Please enter how may of each item you would like \n"))
+
   inp = item_selection()
   p = purchase(inp, m)
   if p == 1:
@@ -72,6 +87,11 @@ while True:
       pass
   else:
     pass
+
+  print("You have requested " + str(NumItems) + " items")
+
+  numOfChocolatebars = numOfChocolatebars - NumItems
+  print ("We now have " + str(numOfChocolatebars))
 
 
 

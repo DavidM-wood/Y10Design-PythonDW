@@ -9,9 +9,16 @@ numOfSoda = 10
 numOfGatorade = 10
 numOfWater = 10
 
+# These are placeholders for the prices of the objects in the machine
+price1 = 0.0
+price2 = 0.0
+price3 = 0.0
+price4 = 0.0
+price5 = 0.0
 
-# m represents...
-# p represents...
+
+# m represents... the money in int form 
+# p represents... the purchase
 # "inp" represents the option chosedn by the user
 # ???? represents the amount of each item we are requesting
 
@@ -53,29 +60,22 @@ def item_selection():
 def purchase (inp, m):
   price = 0.0
   if inp == 1:
-     price = 1.5
+     price1 = 1.5
   elif inp == 2:
-     price = 1.5
+     price2 = 1.5
   elif inp == 3:
-     price = 2.5
+     price3 = 2.5
   elif inp == 4:
-     price = 2.5
+     price4 = 2.5
+  elif inp == 5:
+      price5 = 2.5
   else:
-     price = 2.5
+     print ("Provide a valid option!!!!!")
  
-  if m < price:
-    print("You do not have sufficient money, try again ")
-    return 0
-  else:
-    print("Thanks - your change is $",m-price)
-
+# THis is where the program starts 
 
 while True:
   m = user_input()
-  
-  print("You have entered $",m)
-  NumItems = int(input ("Please enter how may of each item you would like \n"))
-
   inp = item_selection()
   p = purchase(inp, m)
   if p == 1:
@@ -87,6 +87,19 @@ while True:
       pass
   else:
     pass
+
+  if m < p:
+    print("You do not have sufficient money, try again ")
+    #return 0
+  else:
+    print("Thanks - your change is $",m-p)
+
+  
+    print("You have entered $",m)
+  
+  NumItems = int(input ("Please enter how may of each item you would like \n"))
+
+  
 
   print("You have requested " + str(NumItems) + " items")
 

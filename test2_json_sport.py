@@ -24,7 +24,7 @@ import json
 def writeHTML(data):
     myfile = open("myapi.html","w")
     myfile.write("<h1>JSON file returned by API call</h1>")
-    myfile.write("<p>Please feel free to visit <a href='https://www.thesportsdb.com/api/v1/json/1/all_sports.php'>Sports DB</a> for further info.</p>")
+    myfile.write("<p>Please feel free to visit <a href='https://www.thesportsdb.com/api.php?ref=apilist.fun'>Sports DB</a> for further info.</p>")
     myfile.write(data)
     myfile.close()
 
@@ -52,7 +52,7 @@ def main():
     # if API call is correct
     if (response.status_code == 200):
         data = response.content # response comes in as byte data type
-        writeHTML(data_as_str)  # call function to write string data to HTML file
+        writeHTML(data.decode())  # call function to write string data to HTML file
 
         # load as a JSON to access specific data more easily
         d = {}
@@ -76,6 +76,28 @@ def main():
         user_inp = d[inp]
 
 
+        d2 = {}
+
+        d2[1] = "History"
+        d2[2] = "Dimensions"
+        d2[3] = "Full Text"
+
+        '''choice = input("Please select which information you would like to see.\n")
+
+        if choice.lower() == "soccer":
+            print("History of soccer")
+        elif choice.lower() == "basketball":
+            print("basketball")'''
+
+        print("Please select which information you would like to see.")
+        print("History of" )
+        print("Dimensions of")
+        print("Full Text")
+
+        inp2 = input()
+        inp = int(inp2)
+
+        user_inp2 = d2[inp2]
 
 
 

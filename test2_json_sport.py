@@ -29,16 +29,47 @@ def writeHTML(data):
     myfile.close()
 
 
-def searchhistory(data):
+def SearchBasketballHistory(data):
     l = []
-    l = data.split('\n')
+    wlist = []
+    l = data.split('.')
     
 
     for i in l:
         if "invented" in i:
-            print("Invented: ", i)
+            wlist = i.split(' ')
+            for w in wlist:
+                if w.isdigit():
+                    print("Invented in:",w)
+                else:
+                    pass
+            #print("Invented: ", i)
         else:
             pass
+
+def SearchBaseballHistory(data):
+    l = []
+    l = data.split('\n')
+
+    for i in l:
+        if "evolved" in i:
+            print("History:", i)
+        else:
+            pass
+
+def SearchDescription(data):
+    l = []
+    l = data.split('\n')
+
+    for i in l:
+        if"score" in i:
+            print("Description:", i)
+        else:
+            pass
+
+def FullText(data):
+    print(data)
+
 
 '''def basicdescription(data)
 
@@ -57,18 +88,18 @@ def main():
         # load as a JSON to access specific data more easily
         d = {}
 
-        d[1] = "Soccer"
-        d[2] = "Baseball"
-        d[3] = "Basketball"
-        d[4] = "American Football"
-        d[5] = "Ice Hockey"
+        
+        d[1] = "Baseball"
+        d[2] = "Basketball"
+        d[3] = "American Football"
+        d[4] = "Ice Hockey"
 
         print ("Select one from the following sports")
-        print("1. Soccer")
-        print("2. Baseball")
-        print("3. Basketball")
-        print("4. Football")
-        print("5. Hockey")
+    
+        print("1. Baseball")
+        print("2. Basketball")
+        print("3. Football")
+        print("4. Hockey")
 
         inp = input()
         inp = int(inp)
@@ -79,23 +110,17 @@ def main():
         d2 = {}
 
         d2[1] = "History"
-        d2[2] = "Dimensions"
+        d2[2] = "Description"
         d2[3] = "Full Text"
 
-        '''choice = input("Please select which information you would like to see.\n")
-
-        if choice.lower() == "soccer":
-            print("History of soccer")
-        elif choice.lower() == "basketball":
-            print("basketball")'''
 
         print("Please select which information you would like to see.")
-        print("History of" )
-        print("Dimensions of")
-        print("Full Text")
+        print("1 History of", d[inp])
+        print("2 Description of", d[inp])
+        print("3 Full Text")
 
         inp2 = input()
-        inp = int(inp2)
+        inp2 = int(inp2)
 
         user_inp2 = d2[inp2]
 
@@ -108,7 +133,19 @@ def main():
         for sport in sports:
             sportName = sport['strSport']
             if sportName == user_inp:
-                searchhistory(sport['strSportDescription'])
+                search = user_inp2
+                if search == "History" and sportName == "Basketball":
+                   SearchBasketballHistory(sport['strSportDescription'])
+                elif search == "History" and sportName =="Baseball":
+                    SearchBaseballHistory(sport['strSportDescription'])
+
+                elif search == "Description":
+                    SearchDescription(sport["strSportDescription"])
+                elif search == "Full Text":
+                    FullText(sport["strSportDescription"])
+                
+                else:
+                    print("Invalid Request")
                 #print(sport['strSportDescription'])
             else:
                 pass

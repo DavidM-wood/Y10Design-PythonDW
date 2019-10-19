@@ -43,11 +43,31 @@ def SearchBasketballHistory(data):
                     print("Invented in:",w)
                 else:
                     pass
-            #print("Invented: ", i)
+        else:
+            pass
+
+#SearchBFHHistory searches the paragraph in Baseball, Football, and Hockey about the history of the game. 
+def SearchBFHHistory(data):
+    l = []
+    l = data.split('\n')
+
+    for i in l:
+        if "evolved" in i:
+            print("History:", i)
         else:
             pass
 
 def SearchBaseballHistory(data):
+    l = []
+    l = data.split('\n')
+
+    for i in l:
+        if "evolved" in i:
+            print("History:", i)
+        else:
+            pass
+
+def SearchFootballHistory(data):
     l = []
     l = data.split('\n')
 
@@ -67,13 +87,12 @@ def SearchDescription(data):
         else:
             pass
 
+
+
 def FullText(data):
     print(data)
 
 
-'''def basicdescription(data)
-
-def full description(data)'''
 
 def main():
     # use API to get place info
@@ -137,7 +156,11 @@ def main():
                 if search == "History" and sportName == "Basketball":
                    SearchBasketballHistory(sport['strSportDescription'])
                 elif search == "History" and sportName =="Baseball":
-                    SearchBaseballHistory(sport['strSportDescription'])
+                    SearchBFHHistory(sport['strSportDescription'])
+                elif search == "History" and sportName == "American Football":
+                    SearchBFHHistory(sport['strSportDescription'])
+                elif search == "History" and sportName == "Ice Hockey":
+                    SearchBFHHistory(sport['strSportDescription'])
 
                 elif search == "Description":
                     SearchDescription(sport["strSportDescription"])

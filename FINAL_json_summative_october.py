@@ -7,19 +7,7 @@ myapi.py
 import requests
 import json
 
-# Find APIs at - https://apilist.fun/
-# some will require an API key, boo hiss!
 
-# cool geo example
-# https://geo-info.co/?ref=apilist.fun
-# example - https://geo-info.co/43.65,-79.40
-
-# cool funny example
-# https://funtranslations.com/api/chef
-# https://api.funtranslations.com/translate/chef.json?text=I%20like%20upper%20canada%20college
-
-# For any indentation errors, make sure there are no tabs (\t) by doing 
-# a full replace of \t with 4 actual spaces
 
 
 

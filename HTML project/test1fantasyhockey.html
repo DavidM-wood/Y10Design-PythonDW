@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UN Sustainable Goals icon </title>
+	<script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<style>
+
+		body {
+	  		margin: 0;
+	  		font-family: Arial, Helvetica, sans-serif;
+		}
+		
+		.topbartext {
+
+			color: #f2f2f2;
+		  	text-align: center;
+		}
+
+
+		.topbar {
+			overflow: hidden;
+			background-color: #F5F5F5;
+			height :150px;
+			width :100%;
+			position: fixed;
+			z-index:1;
+		}
+
+		.topbartext{
+
+		  color: #f2f2f2;
+		  text-align: center;
+		  padding: 5px 16px;
+		  text-decoration: none;
+		  font-size: 45px;
+		  justify-content: right;
+		  text-align: center;
+		  
+		
+
+		}
+
+
+		.content  {
+		
+			padding-top: 300px;
+		}
+
+		.content-left {
+			float: left;
+		}
+
+		.content-right {
+			float: right;
+		}
+
+		.wordleft{
+			margin-left: 10px;
+		}
+
+		.wordright{
+			margin-right:10px;
+		}
+
+		.flex-container {
+  			display: flex;
+  			background-color: DodgerBlue;
+  			padding-top: 300px;
+  			justify-content: center;
+			
+		
+		}
+
+		.flex-container > div {
+		  	background-color: #f1f1f1;
+		  	margin: 10px;
+		  	padding: 20px;
+  			font-size: 30px;
+		}
+
+		.flex-container div {
+			background-color: white;
+			text-align:center;
+		}
+		.dropdown {
+		  position: relative;
+		  display: inline-block;
+		}
+
+		.dropdown-content {
+		  display: none;
+		  position: absolute;
+		  background-color: #f1f1f1;
+		  min-width: 160px;
+		  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		  z-index: 1;
+		}
+
+		.dropdown-content a {
+		  color: black;
+		  padding: 12px 16px;
+		  text-decoration: none;
+		  display: block;
+		}
+
+		.dropdown-content a:hover {background-color: #ddd;}
+
+		.dropdown:hover .dropdown-content {display: block;}
+
+		.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+		}
+
+		.settingbutton {
+			position: absolute;
+			top:10px;
+			right:100px;
+		}
+
+				
+	</style>
+
+
+</head>
+
+<body>
+<div class="dropdown">
+	<button class="dropbtn"> Draft</button>
+	<div class="dropdown-content">
+		<a href="#"> Draft</a>
+		<a href="#"> Mock Draft</a>
+	</div>
+
+</div>
+<a href="cleanwater.html"><button style="background-color: #333;">Read More</button></a>
+
+
+<div class="dropdown">
+	<button class="droptbtn"> League</button>
+	<div class="dropdown-content">
+		<a href="#"> League 1</a>
+		<a href="#"> League 2</a>
+	</div>
+</div>
+
+<a href="cleanwater.html"><button style="background-color: #333;">Read More</button></a>
+<a href="cleanwater.html"><button style="background-color: #333;">Read More</button></a>
+
+
+<a href="cleanwater.html"><button style="background-color: #333;">Settings</button></a>
+<div class="settingbutton">
+</div>
+
+
+
+  
+
+
+<div class="flex-container">
+  
+  <div style="flex-grow: 3">
+  	<img src="img/goal3.png" alt="Avatar" style="width:300px; height:300px;">
+		<div class = "wordleft">
+			                        
+		</div>
+		<a href="goodhealth.html"><button style ="background-color: #279b48;">Read More</button></a>
+
+	</div>
+  <div style="flex-grow: 1; background-color: DodgerBlue"></div>
+
+  <div style="flex-grow: 3">	
+  	<img src="img/goal6.png" alt="Avatar" style="width:300px; height:300px;">
+	<div class = "wordright">
+		
+	</div>
+</div>  
+</div>
+
+
+
+	
+
+	
+</div>
+
+
+
+
+  
+</div>
+
+</body>
+</html>

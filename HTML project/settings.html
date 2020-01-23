@@ -2,6 +2,30 @@
     <head>
       <Title>Settings</Title>
       <style>
+
+        #passwords {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .change.password {
+          display: flex;
+          justify-content: left;
+          flex-direction: row;
+        }
+
+        #team.name {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .change.team.name {
+          display: flex;
+          justify-content: left;
+          flex-direction: row;
+        }
       
         
   </style>
@@ -11,15 +35,57 @@
     </head>
 
     <body>
-
-      <div>
-         <a href="test.html"><button style="background-color:;">Back</button></a>
-       </div>
-       
       <div>
       Welcome to the settings page
       </div>
-           
+<!-- the delete account button is not finished yet-->
+
+      <div>
+         <a href="test.html"><button style="background-color:;">Back</button></a>
+         <a href="test.html"><button style="background-color:; float: right">Delete Account</button></a>
+       </div>
+
+      
+       
+<div id="passwords">
+  <div class="change.password"><label>Old Password: </label>
+      <input type="text" id="change_password">
+    </div>
+<div id="passwords"> 
+  <div class="change.password"><label>New Password: </label>
+      <input type="text" id="new_password" value="">
+    </div>
+<div id="passwords">
+  <div class="change.password"><label>New Password: </label>
+      <input type="text" id="new_password_second_time" value="">
+    </div>
+<!-- The colours to the buttons will be set later -->
+  <div class="change.password">
+      <button onclick="change()">Set new password</button>
+    </div><br>
+<div id="team.name">
+  <div class="change.team.name"><label>Change Team Name: </label>
+    <input type="text" id="change.team.name">
+  </div>
+      <button onclick="change()" style="background-color:; color:;">Change Team Name</button>
+
+
+  
+<!-- this button is not finished yet-->
+<div>
+<a href="news.html"><button style="background-color:; color:;">Leave League</button></a>
+</div>
+
+
+
+
+
+            
+</div>
+
+      
+
+     
     </body>
     
   

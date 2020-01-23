@@ -1,8 +1,8 @@
-
 <html>
 
+
     <head>
-      <Title>Draft</Title>
+      <Title>DRAFT</Title>
       <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
       <!-- The core Firebase JS SDK is always required and must be listed first -->
       <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
@@ -27,6 +27,49 @@
 
 
     <body>
+
+    <!-- This is the first drop down button called the Draft drop down button. This drop down button allows for the user to either draft players or participate in a mock draft. -->
+
+    <div class="dropdown" style="display:inline">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Draft
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="draft.html">Draft</a></li>
+        <li><a href="mockdraft.html">Mock Draft</a></li>
+      </ul>
+    </div>
+
+    <!-- This is the News button where the user can view news related to fantasy hockey. -->
+
+    <a href="news.html"><button style="background-color:#428bca; color:#fff;">News</button></a>
+
+    <!-- This is the seconds drop down button called the League drop down button. The League drop down button is a drop down button where the user can select what league they would like to use. -->
+
+    <div class="dropdown" style="display:inline">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">League
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="League1.html">League 1</a></li>
+        <li><a href="League2.html">League 2</a></li>
+      </ul>
+    </div>
+
+    <!-- These are the buttons for creating a new league, viewing the games that are currently going on, and the settings button. The first button is New League, the second is Games, and the thrid is Settings. -->
+    <div>
+      <a href="newleague.html"><button style="background-color:#428bca; color:#fff;">New League</button></a>
+      <a href="games.html"><button style="background-color:#428bca; color:#fff;">Games</button></a>
+      <a href="settings.html"><button style="background-color:#428bca; color:#fff;float:right">Settings</button></a>
+    </div>
+
+    <div class="settingbutton">
+    </div>
+
+    <div>
+      <picture>
+        <source media="(max-width: 100px)" srcset="images/LogoMakr_5PDN5S.png">
+        <img src="images/LogoMakr_5PDN5S.png" alt="Avatar">
+      </picture>
+    </div>
 
 
 

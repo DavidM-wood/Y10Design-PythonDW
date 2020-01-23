@@ -149,7 +149,6 @@ def body():
                 
                 else:
                     print("Invalid Request")
-                #print(sport['strSportDescription'])
             else:
                 pass
            

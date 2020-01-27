@@ -9,7 +9,8 @@
       <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
       <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
       <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
+      <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> 
+      -->
 
 
       <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
@@ -41,7 +42,7 @@
             <h1 id="uid"></h1>
             
             <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
-            <h3>A demonstration of how to "set" and "get" information in the database</h3>
+            <h3>Please select who you would like to draft</h3>
 
             <button onclick = "signin()" >Sign In</button>
            
@@ -170,55 +171,15 @@
             var listOfPlayers = data.val(); // access the data 'value' of each student 'object' 
             var keys = Object.keys(listOfPlayers);
             console.log(keys);
-            console.log("good up to this pt") ////////
-
-
-
-
-
-            //////////////////////
-
-            // iterate through the unique object id's and grab data fields: 'name', 'subject', 'mark'
             
-            //for (var i = 0; i < keys.length; i++){
-             // var k = keys[i];
-            //  var firstPlayerAAA = listOfPlayers[k].firstPlayer;
-             // console.log(firstPlayerAAA);
-             // var secondPlayerAAA = listOfPlayers[k].secondPlayer;
-             // console.log(secondPlayerAAA);
-             // var thirdPlayerAAA = listOfPlayers[k].thirdPlayer;
-            //  console.log(thirdPlayerAAA);
-             // var fourthPlayerAAA = listOfPlayers[k].fourthPlayer;
-             // console.log(fourthPlayerAAA);
-             // var fifthPlayerAAA = listOfPlayers[k].fifthPlayer;
-             // console.log(fifthPlayerAAA);
+            for (var i = 0; i < keys.length; i++){
+              var k = keys[i];
+              console.log(k);
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(k));
+              playerList.appendChild(entry);
 
-            // end FOR LOOP
-
-            // DISPLAY STUDENT NAMES - TAKE OUT OF THE FOR LOOP
-            // Create a reference to the ordered list called 'studentList'
-            // called 'oListStudent'
-            var oListPlayer = document.getElementById('playerList');
-            var entry = document.createElement('li'); // a list element to be added to the ordered list
-            entry.appendChild(document.createTextNode(firstPlayerAAA));
-            oListPlayer.appendChild(entry);
-
-            var entry = document.createElement('li'); // a list element to be added to the ordered list
-            entry.appendChild(document.createTextNode(secondPlayerAAA));
-            oListPlayer.appendChild(entry);
-
-            var entry = document.createElement('li'); // a list element to be added to the ordered list
-            entry.appendChild(document.createTextNode(thirdPlayerAAA));
-            oListPlayer.appendChild(entry);
-
-            var entry = document.createElement('li'); // a list element to be added to the ordered list
-            entry.appendChild(document.createTextNode(fourthPlayerAAA));
-            oListPlayer.appendChild(entry);
-
-            var entry = document.createElement('li'); // a list element to be added to the ordered list
-            entry.appendChild(document.createTextNode(fifthPlayerAAA));
-            oListPlayer.appendChild(entry);
-
+            }//end for loop
               
               // AJ: we only need to send information to the console window when we
               // are debugging our code of errors
@@ -226,7 +187,7 @@
               // console.log (subject);
 
             }
-        }
+    
 
         function errData(err){
             console.log('Error!')

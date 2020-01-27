@@ -43,8 +43,11 @@
             
             <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
             <h3>Please select who you would like to draft</h3>
-
+            <!-- this button displays the players in the database.-->
+            <button onclick = "getData()" >Click to see available players</button>
+<!-- What does the signin button do? -->
             <button onclick = "signin()" >Sign In</button>
+            <p>Enter the name of the players you would like to draft</p>
            
             <input type="text" id="playerInput1" placeholder="Enter player" name="player">
             <input type="text" id="playerInput2" placeholder="Enter player" name="player">
@@ -52,8 +55,8 @@
             <input type="text" id="playerInput4" placeholder="Enter player" name="player">
             <input type="text" id="playerInput5" placeholder="Enter player" name="player">
 
-            <button onclick = "setData()" >Set Players</button>
-            <button onclick = "getData()" >Get Players</button>
+            <button onclick = "setData()" >Draft Players</button>
+            
 
             <p>Current Data:</p>
 

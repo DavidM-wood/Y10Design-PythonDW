@@ -1,30 +1,199 @@
+
 <html>
+
     <head>
-      <Title>Games</Title>
-      <style>
+      <Title>Draft</Title>
+      <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script> 
       
-        
-  </style>
 
 
-    
+      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script>
     </head>
+    
+    <style>
+      
+      .topbar {
+    overflow:hidden;
+    background-color: #333;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+  }   
+
+    </style>
+
+
 
     <body>
 
-      <div>
-         <a href="test.html"><button style="background-color:;">Back</button></a>
-       </div>
-       
-      <div>
-        Welcome to the games page
+
+      <div class= "topbar">
+        <div>
+             <a href="index.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF;">Back</button></a>
+        </div>
+        <div>
+          <p style= "color:#D7C49EFF; text-align:center "> Welcome to the Games Page</p>
+        </div>
       </div>
+
+            <h1 id="uid"></h1>
+            
+            <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
            
+            <!-- this button displays the players in the database.-->
+            <button onclick = "getData()" >Click to see upcoming games</button>
+            
+           
+          
+
+            
+
+            <p>Upcoming Games:</p>
+
+            <!-- ol means ordered list -->
+            <p><ol id="List"></ol></p>    
+                 
     </body>
     
-  
+    <!-- HERE IS THE JAVASCRIPT TO CONNECT TO YOUR FIREBASE -->
     <script>
 
+        // Variables created here to be used throughout the program
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+        var userId = document.getElementById("uid").innerHTML;
         
+        // Your web app's Firebase configuration that we copy-and-paste from 
+        // the Firebase setup
+        var config = {
+
+        ////////////// INSERT FIREBASE AUTHENTICATION CODE HERE //////////////
+
+        apiKey: "AIzaSyBJrstIGZjMJp3AqPV-5Mb948yvWMcJyyw",
+        authDomain: "y10-coding.firebaseapp.com",
+        databaseURL: "https://y10-coding.firebaseio.com",
+        projectId: "y10-coding",
+        storageBucket: "y10-coding.appspot.com",
+        messagingSenderId: "1079365887995",
+        appId: "1:1079365887995:web:2206566d734bdeca9f0d5e",
+        measurementId: "G-J9HBQ3C722"
+
+        ////////////// INSERT FIREBASE AUTHENTICATION CODE HERE //////////////
+          
+        };
+
+        firebase.initializeApp(config);
+        //firebase.analytics();
+
+        // Authentication Check: to see if you are logged in
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user == null) {
+                document.getElementById("uid").innerHTML = "not logged in";
+                return;
+            } else {
+                userId = user.uid; // you can also get .displayName, .photoURL, .email
+                document.getElementById("uid").innerHTML = userId; // display Google uid on page
+                
+            } // end user null check
+        }); // end check auth state
+
+
+        // Functions that will be used to "get" and "set" data, among other "helper"
+        // functions too...
+
+        function signin() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider).then(function(result) { 
+                window.location.replace("fbtest.html");
+            });
+        } // end signin 
+
+        function setData() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node" called StudentInfo
+            var ref = database.ref('PlayerInfo');
+
+            // Grab the Name, Subject, and Grade obtained from the HTML frontend textboxes
+            var splayer1 = document.getElementById("playerInput1").value;
+            var splayer2 = document.getElementById("playerInput2").value;
+            var splayer3 = document.getElementById("playerInput3").value;
+            var splayer4 = document.getElementById("playerInput4").value;
+            var splayer5 = document.getElementById("playerInput5").value;
+            
+            // Create a JSON "team" object to add to the database with user-inputted data
+            var team = {
+
+                firstPlayer: splayer1,
+                secondPlayer: splayer2,
+                thirdPlayer: splayer3,
+                fourthPlayer: splayer4,
+                fifthPlayer: splayer5,
+            }
+            // "PUSH" means we add something to the database
+            ref.push(team);
+        } // end setdata
+
+        function getData() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node"
+            // 'StudentInfo'is the name of the main branch in the database
+            var ref = database.ref('/schedule');
+            console.log(ref)
+
+            // we will make reference to each 'value' of a database object which will have 
+            // two helper functions latched "on" to it to perform additional tasks 
+            // - either we have access to data values, or we don't and there is an error
+
+            ref.on('value', gotData, errData) 
+            // jump to the helper function...think of 'value' as the parameter that is passed
+
+        } // end getdata
+
+        function gotData(data){
+
+            // clear items from previously created lists
+            document.getElementById("List").innerHTML = "";
+            
+            // collect all of the unique objects ('keys' or id's) out of the database
+            var listOfPlayers = data.val(); // access the data 'value' of each student 'object' 
+            var keys = Object.keys(listOfPlayers);
+            console.log(keys);
+            
+            for (var i = 0; i < keys.length; i++){
+              var k = keys[i];
+              console.log(k);
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(k));
+              List.appendChild(entry);
+
+            }//end for loop
+              
+              // AJ: we only need to send information to the console window when we
+              // are debugging our code of errors
+              // console.log (keys[i]);
+              // console.log (subject);
+
+            }
+    
+
+        function errData(err){
+            console.log('Error!')
+            console.log(err)
+        }
+
     </script>
 </html>

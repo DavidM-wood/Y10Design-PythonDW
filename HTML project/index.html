@@ -1,6 +1,5 @@
+<!-- This is a program that combines the pros of ESPN and Yahoo fantasy hockey while fixing the cons of the two fantasy hockey sites. -->
 
-<!-- Welcome to some sample code to control your Firebase Database -->
-<!-- HERE IS YOUR HTML TO SET UP YOUR PAGE -->
 <html>
     <head>
         <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
@@ -11,254 +10,75 @@
         <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
+<!-- These are the libraries that allow for the drop down buttons to work properly -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script>
 
-        <!-- Add SDKs for Firebase products that you want to use 
-          https://firebase.google.com/docs/web/setup#available-libraries -->
-<!-- 
-      <style>
-        }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+<style>
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
+  .topbar {
+    overflow:hidden;
+    background-color: #333;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+  }
 
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: inline;
-    }
+</style>
+<body>
+<!-- This is the first drop down button called the Draft drop down button. This drop down button allows for the user to either draft players or participate in a mock draft. -->
 
-    .dropdown-content a:hover {background-color: #ddd;}
-
-    .dropdown:hover .dropdown-content {display: inline;}
-
-    .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-    }
-
-    .settingbutton {
-      position: absolute;
-      top:10px;
-      right:100px;
-    }
-
-        
-  </style>
--->
-
-    
-
-    <!--<body > -->
-           <!-- <h1 id="uid"></h1> -->
-
-      <div class="dropdown" style="display:inline">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Draft
+<div class= "topbar">
+  <div class="dropdown" style="display:inline">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">Draft
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
         <li><a href="draft.html">Draft</a></li>
         <li><a href="mockdraft.html">Mock Draft</a></li>
-      
       </ul>
     </div>
 
-      <!--<div class="dropdown">
-        <button class="dropbtn"> Draft</button>
-            <div class="dropdown-content">
-                <a href="draft.html"> Draft</a>
-                <a href="mockdraft.html"> Mock Draft</a>
-            </div>
-      </div>-->
+<!-- This is the News button where the user can view news related to fantasy hockey. -->
 
-        
-     <a href="news.html"><button style="background-color:;">News</button></a>
-      
+<a href="news.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF;">News</button></a>
 
-    <div class="dropdown">
-          <button class="dropbtn"> League</button>
-             <div class="dropdown-content">
-                  <a href="league1.html"> League 1</a>
-                  <a href="league2.html"> League 2</a>
-             </div>
-    </div>
-  </body>
-    
-    <a href="newleague.html"><button style="background-color:;">New League</button></a>
-    <a href="games.html"><button>Games</button></a>
-    <a href="settings.html"><button style="background-color:;">Settings</button></a>
-    <div class="settingbutton">
-    
+<!-- This is the seconds drop down button called the League drop down button. The League drop down button is a drop down button where the user can select what league they would like to use. -->
+
+  <div class="dropdown" style="display:inline">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">League
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="League1.html">League 1</a></li>
+        <li><a href="League2.html">League 2</a></li>
+      </ul>
     </div>
 
-      </div>
-    
-      
+<!-- These are the buttons for creating a new league, viewing the games that are currently going on, and the settings button. The first button is New League, the second is Games, and the thrid is Settings. -->
 
-    
-    </div>
+  <a href="newleague.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">New League</button></a>
+  <a href="games.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">Games</button></a>
+  <a href="settings.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF; float:right">Settings</button></a>
+</div>
+  <div class="settingbutton">
+  </div>
+</div>
 
-    <!-- <button style="background-color:#333;"> changes the background colour -->
-    
-            
-            <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
-           
-    </body>
-    
-    <!-- HERE IS THE JAVASCRIPT TO CONNECT TO YOUR FIREBASE -->
-    <script>
+<div>
+  <picture>
+    <source media="(max-width: 200px)" srcset="images/rink.jpg">
+      <img src="images/rink.jpg" alt ="Avatar">
+    </picture>
+  </div>
 
-        // Variables created here to be used throughout the program
-
-        var provider = new firebase.auth.GoogleAuthProvider();
-        var userId = document.getElementById("uid").innerHTML;
-        
-        // Your web app's Firebase configuration that we copy-and-paste from 
-        // the Firebase setup
-        var config = {
-
-    
-          apiKey: "AIzaSyBJrstIGZjMJp3AqPV-5Mb948yvWMcJyyw",
-          authDomain: "y10-coding.firebaseapp.com",
-          databaseURL: "https://y10-coding.firebaseio.com",
-          projectId: "y10-coding",
-          storageBucket: "y10-coding.appspot.com",
-          messagingSenderId: "1079365887995",
-          appId: "1:1079365887995:web:2206566d734bdeca9f0d5e",
-          measurementId: "G-J9HBQ3C722"
-  
-          };
-
-        firebase.initializeApp(config);
-        //firebase.analytics();
-
-        // Authentication Check: to see if you are logged in
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user == null) {
-                document.getElementById("uid").innerHTML = "not logged in";
-                return;
-            } else {
-                userId = user.uid; // you can also get .displayName, .photoURL, .email
-                document.getElementById("uid").innerHTML = userId; // display Google uid on page
-                
-            } // end user null check
-        }); // end check auth state
+<div>
+  <picture>
+    <source media="(max-width: 100px)" srcset="images/LogoMakr_5PDN5S.png">
+    <img src="images/LogoMakr_5PDN5S.png" alt="Avatar">
+  </picture>
+</div>
 
 
-        // Functions that will be used to "get" and "set" data, among other "helper"
-        // functions too...
 
-        function signin() {
-            var provider = new firebase.auth.GoogleAuthProvider();
-            firebase.auth().signInWithRedirect(provider).then(function(result) { 
-                window.location.replace("fbtest.html");
-            });
-        } // end signin 
 
-        function setData() {
-
-            // Create a database object that we can refer to
-            var database = firebase.database();
-
-            // Create a reference to a particular location or "node" called StudentInfo
-            var ref = database.ref('StudentInfo');
-
-            // Grab the Name, Subject, and Grade obtained from the HTML frontend textboxes
-            var sname = document.getElementById("student").value;
-            var ssubject = document.getElementById("subject").value;
-            var smark = document.getElementById("mark").value;
-            
-            // Create a JSON object to add to the database with user-inputted data
-            var data = {
-                name: sname,
-                subject: ssubject,
-                mark: smark
-            }
-            // "PUSH" means we add something to the database
-            ref.push(data);
-        } // end setdata
-
-        function getData() {
-
-            // Create a database object that we can refer to
-            var database = firebase.database();
-
-            // Create a reference to a particular location or "node"
-            // 'StudentInfo'is the name of the main branch in the database
-            var ref = database.ref('StudentInfo');
-
-            // we will make reference to each 'value' of a database object which will have 
-            // two helper functions latched "on" to it to perform additional tasks 
-            // - either we have access to data values, or we don't and there is an error
-
-            ref.on('value', gotData, errData) 
-            // jump to the helper function...think of 'value' as the parameter that is passed
-
-        } // end getdata
-
-        function gotData(data){
-
-            // clear items from previously created lists
-            document.getElementById("studentList").innerHTML = "";
-            document.getElementById("subjectList").innerHTML = "";
-            document.getElementById("markList").innerHTML = "";
-            
-            // collect all of the unique objects ('keys' or id's) out of the database
-            var studentData = data.val(); // access the data 'value' of each student 'object' 
-            var keys = Object.keys(studentData);
-            console.log(keys);
-
-            // iterate through the unique object id's and grab data fields: 'name', 'subject', 'mark'
-            for (var i = 0; i < keys.length; i++){
-              var k = keys[i];
-              var name = studentData[k].name;
-              var subject = studentData[k].subject;
-              var mark = studentData[k].mark;
-
-              // DISPLAY STUDENT NAMES
-              // Create a reference to the ordered list called 'studentList'
-              // called 'oListStudent'
-              var oListStudent = document.getElementById('studentList');
-              var entry = document.createElement('li'); // a list element to be added to the ordered list
-              entry.appendChild(document.createTextNode(name));
-              oListStudent.appendChild(entry);
-
-              // DISPLAY STUDENT SUBJECTS
-              // Create a reference to the ordered list called 'studentList'
-              // called 'oListStudent'
-              var oListSubject = document.getElementById('subjectList');
-              var entry = document.createElement('li'); // a list element to be added to the ordered list
-              entry.appendChild(document.createTextNode(subject));
-              oListSubject.appendChild(entry);
-
-              // DISPLAY STUDENT MARKS
-              // Create a reference to the ordered list called 'markList'
-              // called 'oListMark'
-              var oListMark = document.getElementById('markList');
-              var entry = document.createElement('li'); // a list element to be added to the ordered list
-              entry.appendChild(document.createTextNode(mark));
-              oListMark.appendChild(entry);
-              
-              // AJ: we only need to send information to the console window when we
-              // are debugging our code of errors
-              // console.log (keys[i]);
-              // console.log (subject);
-
-            }
-        }
-
-        function errData(err){
-            console.log('Error!')
-            console.log(err)
-        }
-
-    </script>
-</html>
+</body>

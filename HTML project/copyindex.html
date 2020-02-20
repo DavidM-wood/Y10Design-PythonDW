@@ -1,0 +1,84 @@
+<!-- This is a program that combines the pros of ESPN and Yahoo fantasy hockey while fixing the cons of the two fantasy hockey sites. -->
+
+<html>
+    <head>
+        <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
+<!-- These are the libraries that allow for the drop down buttons to work properly -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script>
+
+<style>
+
+  .topbar {
+    overflow:hidden;
+    background-color: #333;
+    height: 60px;
+    width: 100%;
+    position: relative;
+  }
+
+  .center {
+  display: block;
+  margin-left: auto; 
+  margin-right: auto;
+  padding-top: 100px;
+
+  
+}
+
+
+</style>
+<body>
+<!-- This is the first drop down button called the Draft drop down button. This drop down button allows for the user to either draft players or participate in a mock draft. -->
+
+<div class= "topbar">
+  <div class="dropdown" style="display:inline">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">Draft
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="draft.html">Draft</a></li>
+        <li><a href="mockdraft.html">Mock Draft</a></li>
+      </ul>
+  </div>
+
+<!-- This is the News button where the user can view news related to fantasy hockey. -->
+
+<a href="news.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF;">News</button></a>
+
+<!-- This is the seconds drop down button called the League drop down button. The League drop down button is a drop down button where the user can select what league they would like to use. -->
+
+  <div class="dropdown" style="display:inline">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">League
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="League1.html">League 1</a></li>
+        <li><a href="League2.html">League 2</a></li>
+      </ul>
+    </div>
+
+<!-- These are the buttons for creating a new league, viewing the games that are currently going on, and the settings button. The first button is New League, the second is Games, and the thrid is Settings. -->
+
+  <a href="newleague.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">New League</button></a>
+  <a href="games.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">Games</button></a>
+  <a href="settings.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF; float:right">Settings</button></a>
+</div>
+  <div class="settingbutton">
+  </div>
+</div>
+
+<div>
+  <img src="images/rink.with.logo.jpg" alt="Avatar" class="center">
+</div>
+
+
+
+
+</body>

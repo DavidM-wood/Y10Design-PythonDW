@@ -13,20 +13,37 @@
       
 
 
-      <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     
     <style>
       
-      .topbar {
-    overflow:hidden;
-    background-color: #333;
-    height: 60px;
-    width: 100%;
-    position: fixed;
-  }   
+      body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+          }
+
+          .navbar {
+            overflow: hidden;
+            width: fill;
+            background-color: #333;
+          }
+
+          .navbar a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+
+          }
+          .navbar a:hover {
+            background-color: red;
+          }
 
     </style>
 
@@ -35,12 +52,12 @@
     <body>
 
 
-      <div class= "topbar">
+      <div class= "navbar">
         <div>
-             <a href="index.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF;">Back</button></a>
+             <a href="index.html">Back</a>
         </div>
         <div>
-          <p style= "color:#D7C49EFF; text-align:center "> Welcome to the Games Page</p>
+          <p style= "color:white; text-align:center "> Welcome to the Games Page</p>
         </div>
       </div>
 
@@ -49,7 +66,9 @@
             <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
            
             <!-- this button displays the players in the database.-->
-            <button onclick = "getData()" >Click to see upcoming games</button>
+            <button onclick = "getData()"  >Click to see upcoming games</button>
+
+            
             
            
           
@@ -116,33 +135,6 @@
             });
         } // end signin 
 
-        function setData() {
-
-            // Create a database object that we can refer to
-            var database = firebase.database();
-
-            // Create a reference to a particular location or "node" called StudentInfo
-            var ref = database.ref('PlayerInfo');
-
-            // Grab the Name, Subject, and Grade obtained from the HTML frontend textboxes
-            var splayer1 = document.getElementById("playerInput1").value;
-            var splayer2 = document.getElementById("playerInput2").value;
-            var splayer3 = document.getElementById("playerInput3").value;
-            var splayer4 = document.getElementById("playerInput4").value;
-            var splayer5 = document.getElementById("playerInput5").value;
-            
-            // Create a JSON "team" object to add to the database with user-inputted data
-            var team = {
-
-                firstPlayer: splayer1,
-                secondPlayer: splayer2,
-                thirdPlayer: splayer3,
-                fourthPlayer: splayer4,
-                fifthPlayer: splayer5,
-            }
-            // "PUSH" means we add something to the database
-            ref.push(team);
-        } // end setdata
 
         function getData() {
 
@@ -151,17 +143,28 @@
 
             // Create a reference to a particular location or "node"
             // 'StudentInfo'is the name of the main branch in the database
-            var ref = database.ref('/schedule');
-            console.log(ref)
+            var refdate = database.ref('/schedule');
+            
+           
+            //var ref = database.ref('/schedule/January 28 2020');
+
+            console.log(refdate)
+            
+            
 
             // we will make reference to each 'value' of a database object which will have 
             // two helper functions latched "on" to it to perform additional tasks 
             // - either we have access to data values, or we don't and there is an error
 
-            ref.on('value', gotData, errData) 
+            refdate.on('value', gotData, errData) 
+            
             // jump to the helper function...think of 'value' as the parameter that is passed
 
         } // end getdata
+
+       
+
+
 
         function gotData(data){
 
@@ -181,6 +184,11 @@
               List.appendChild(entry);
 
             }//end for loop
+
+
+           
+
+            
               
               // AJ: we only need to send information to the console window when we
               // are debugging our code of errors

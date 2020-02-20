@@ -1,36 +1,76 @@
 <html>
     <head>
       <Title>News</Title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <style>
 
-          .topbar {
-            overflow:hidden;
-            background-color: #333;
-            height: 60px;
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+          }
+
+          .navbar {
+            overflow: hidden;
             width: 100%;
-            position: fixed;
-          }   
-              .box1{
-          width:fill;
-          height:100px;
-          position: center;
-        }
-         
-        .red{
+            background-color: #333;
+            position:fixed;
 
-          background:#f00;}
 
-        .box2{
-          width:100px;
-          height:100px;
-        }
 
-          .green{
-            background:#0f0;}
-        }
+
+          }
+
+          .navbar a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+
+          }
+          .navbar a:hover {
+            background-color: red;
+
+          }
+
+          /*.item-a {
+            grid-column-start: 30;
+            grid-column-end: 120;
+            grid-row-start: row10-start;
+            grid-row-end: 3;
+            margin: 0 auto;
+          }*/
+          .grid-container {
+            display: grid;
+            justify-content: space-evenly;
+            grid-template-columns: 40px auto 2rem; /*Make the grid smaller than the container*/
+            grid-gap: 10px;
+            background-color: #D3D3D3;
+            padding: 10px;
+          }
+
+          .grid-container > div {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 30px;
+          }
        
-        
-                
+        .center {
+        display: block;
+        margin-left: auto; 
+        margin-right: auto;
+      }
+      .right{
+        float:right;
+      }
+
+      .left{
+        float:left;
+      }   
   </style>
 
 
@@ -38,19 +78,41 @@
     </head>
 
     <body>
-<div class= "topbar">
+<div class= "navbar">
       <div>
-         <a href="index.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF;">Back</button></a>
-       </div>
+         <a href="index.html">Back</a>
+      </div>
        
       <div>
-        <p style="color:#D7C49EFF; text-align:center">Welcome to the news page</p>
+        <p style="color:white; text-align:center">Welcome to the news page</p>
       </div>
-    </div>
-           
+</div>
+     
+     <div class="grid-container">
+      <div></div>
+      <div>
+        <!-- target="blank" opens the hyperlink in a new page -->
+        <img src="images/news3.jpg" alt="Avatar" class ="center" style="margin-top:60px">
+        <a href="https://www.tsn.ca/evander-kane-criticizes-nhl-department-of-player-safety-after-suspension-1.1443554" target="blank">Evander Kane suspended</a>
 
-      <div class="box1 red" ></div>
-      <div class="box2 green"></div>
+      </div>
+      <div></div>  
+      <div>
+         
+      </div>
+      <div>
+<img src="images/news2.jpg" alt="Avatar" class="center">
+         <a href="https://www.nhl.com/news/edmonton-oilers-connor-mcdavid-fairly-positive-leg-injury-not-serious/c-306566660" target="blank">Mcdavid suffers injury, had to be helped off the ice.</a> 
+         <p></p>
+        <img src="images/news1.jpg" alt="Avatar" class="center">
+        <a href="https://www.nhl.com/fans/winter-classic/2020" target="blank">Nashville Predators to take on Dalas Stars at the Winter Classic</a>
+        </div>
+      <div>
+          
+      </div>  
+    </div>      
+
+      
 
     </body>
     

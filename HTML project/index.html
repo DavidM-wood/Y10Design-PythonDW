@@ -10,72 +10,135 @@
         <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
-<!-- These are the libraries that allow for the drop down buttons to work properly -->
+<!-- These are the libraries that allow for the drop down buttons to work properly
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+  .center {
+  display: block;
+  margin-left: auto; 
+  margin-right: auto;
+  padding-top: 100px;
 
-  .topbar {
-    overflow:hidden;
-    background-color: #333;
-    height: 60px;
-    width: 100%;
-    position: fixed;
-  }
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.navbar {
+  overflow: hidden;
+  width: fill;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.button2 {
+  float:right;
+}
+
+
+
 
 </style>
 <body>
 <!-- This is the first drop down button called the Draft drop down button. This drop down button allows for the user to either draft players or participate in a mock draft. -->
 
-<div class= "topbar">
-  <div class="dropdown" style="display:inline">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">Draft
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="draft.html">Draft</a></li>
-        <li><a href="mockdraft.html">Mock Draft</a></li>
-      </ul>
+<div class="navbar">
+<div class="dropdown">
+    <button class="dropbtn">Draft 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="draft.html">Draft</a>
+      <a href="mockdraft.html">Mock Draft</a>
     </div>
-
-<!-- This is the News button where the user can view news related to fantasy hockey. -->
-
-<a href="news.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF;">News</button></a>
-
-<!-- This is the seconds drop down button called the League drop down button. The League drop down button is a drop down button where the user can select what league they would like to use. -->
-
-  <div class="dropdown" style="display:inline">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">League
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="League1.html">League 1</a></li>
-        <li><a href="League2.html">League 2</a></li>
-      </ul>
+  </div> 
+  <a href="news.html">News</a>
+  <div class="dropdown">
+    <button class="dropbtn">League 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <!--I might get rid of this page as well as the new league page-->
+    <div class="dropdown-content">
+      <a href="league1.html">League 1</a>
+      <a href="league2.html">League 2</a>
     </div>
-
-<!-- These are the buttons for creating a new league, viewing the games that are currently going on, and the settings button. The first button is New League, the second is Games, and the thrid is Settings. -->
-
-  <a href="newleague.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">New League</button></a>
-  <a href="games.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF">Games</button></a>
-  <a href="settings.html"><button style="background-color:#333; color:#D7C49EFF; border-color: #D7C49EFF; float:right">Settings</button></a>
-</div>
-  <div class="settingbutton">
+  </div> 
+  <a href="newleague.html">New League</a>
+  <a href="games.html">Games</a>
+  <div class="button2">
+    <a href="settings.html">Settings</a>
   </div>
 </div>
 
 <div>
-  <picture>
-    <source media="(max-width: 200px)" srcset="images/rink.jpg">
-      <img src="images/rink.jpg" alt ="Avatar">
-    </picture>
-  </div>
-
-<div>
-  <picture>
-    <source media="(max-width: 100px)" srcset="images/LogoMakr_5PDN5S.png">
-    <img src="images/LogoMakr_5PDN5S.png" alt="Avatar">
-  </picture>
+  <img src="images/rink.with.logo.jpg" alt="Avatar" class="center">
 </div>
 
 

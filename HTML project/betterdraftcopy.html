@@ -21,7 +21,6 @@
             margin-top: 0px;
             margin-left: 0px;
             margin-right: 0px;
-            
           }
 
           .navbar {
@@ -43,32 +42,7 @@
             background-color: red;
           }
 
-        .item1 { grid-area: header; }
-        .item2 { grid-area: menu; }
-        .item3 { grid-area: left; }
-        .item4 { grid-area: main; }
-        .item5 { grid-area: right; }
         
-
-            .grid-container {
-              display: grid;
-              grid-template-areas:
-                'header header header header header header'
-                'menu main main main right right'
-                'left main main main right right'
-                ;
-              grid-gap: 10px;
-              background-color: #2196F3;
-              padding: 10px;
-            }
-
-            .grid-container > div {
-              background-color: rgba(255, 255, 255, 0.8);
-              text-align: center;
-              padding: 20px 0;
-              font-size: 30px;
-            }
-
       
 
 
@@ -89,25 +63,14 @@
         </div>
       </div>
 
-      <div class="grid-container">
-        <div class="item1">
-
             <h1 id="uid"></h1>
-        </div>
-            
-             
-                 
             
             <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
-            <!--<h3>Please select who you would like to draft</h3>-->
+            <h3>Please select who you would like to draft</h3>
             <!-- this button displays the players in the database.-->
-            <div class="item2">
             <button onclick = "getData()" >Click to see available players</button>
-        </div>
 <!-- What does the signin button do? -->
-            <!--<button onclick = "signin()" >Sign In</button>-->
-
-        <div class="item4">
+            <button onclick = "signin()" >Sign In</button>
             <p>Enter the name of the players you would like to draft</p>
            
             <input type="text" id="playerInput1" placeholder="Enter player" name="player">
@@ -117,19 +80,15 @@
             <input type="text" id="playerInput5" placeholder="Enter player" name="player">
 
             <button onclick = "setData()" >Draft Players</button>
-        </div>
-<div class="item3">
-            <p>Available Players</p>
+
+            <p>Current Data:</p>
 
             <!-- ol means ordered list -->
             <p><ol id="playerList"></ol></p>
-        </div>
 
-        <div class="item5">
-            <div>This is your team</div>
-            <div id="team">
+            <div id="team" style="float:right; padding-right:20px">
+
             </div>
-        </div>
                  
     </body>
     
@@ -171,7 +130,7 @@
             } else {
                 userId = user.uid; // you can also get .displayName, .photoURL, .email
                 //document.getElementById("uid").innerHTML = userId; // display Google uid on page
-                document.getElementById("uid").innerHTML = "Logged in"; 
+                document.getElementById("uid").innerHTML = "Welcome!"; 
                 
             } // end user null check
         }); // end check auth state

@@ -1,4 +1,4 @@
- <!-- Welcome to some sample code to control your Firebase Database -->
+<!-- Welcome to some sample code to control your Firebase Database -->
 <!-- HERE IS YOUR HTML TO SET UP YOUR PAGE -->
 <html>
     <head>
@@ -22,15 +22,15 @@
 
 		<input type="text" id="postalcode" style=" height:20px; width: 65px;" value="Enter Postal Code"> 
 
-		<!--<button onclick = "setLocationCoordinates()" >Set Data</button></p-->
-        <button onclick = "getschedule()" >schedule</button></p>
+		<button onclick = "setLocationCoordinates()" >Set Data</button></p>
+        <button onclick = "getLocationCoordinates()" >All Location Data</button></p>
         <button onclick = "getGeoCoordinates()" >All Geo Data</button></p>
         <button onclick = "searchArray()" >Search</button></p>
 
     	<p>Current Data:</p>
 
             <!-- ol means ordered list -->
-            <p><ol id="GamesList"></ol></ol></p>  
+            <p><ol id="locationList"></ol></ol></p>  
 
             <div id="map"></div>  
                  
@@ -96,7 +96,7 @@
 
         /* We only need to set data if there has been a change latitude-longitude database */
 
-        /*function setLocationCoordinates() {
+        function setLocationCoordinates() {
 
             // Create a database object that we can refer to
             var db1 = firebase.database();
@@ -134,11 +134,11 @@
             refLL.push(locD);
             refLL.push(locE);
             
-        } // end setdata */
+        } // end setdata
 
-        function getschedule() {
+        function getLocationCoordinates() {
 
-            document.getElementById("GamesList").innerHTML = "";
+            document.getElementById("locationList").innerHTML = "";
 
             var db1 = firebase.database();
             var refGetGTA1 = db1.ref('LocationCoordinates/Toronto');
@@ -153,7 +153,7 @@
               //console.log(childData);
 
               var displayLocations = JSON.stringify(childData);
-              var oListCoordinates = document.getElementById('GamesList');
+              var oListCoordinates = document.getElementById('locationList');
               var entry = document.createElement('li'); // a list element to be added to the ordered list
               entry.appendChild(document.createTextNode(displayLocations));
               oListCoordinates.appendChild(entry);
@@ -167,7 +167,7 @@
 
         function getGeoCoordinates() {
 
-            document.getElementById("GamesList").innerHTML = "";
+            document.getElementById("locationList").innerHTML = "";
 
             var db2 = firebase.database();
             var refGetGTA2 = db2.ref('GeoCoordinates/City');
@@ -182,7 +182,7 @@
               //console.log(childData);
 
               var displayLocations = JSON.stringify(childData);
-              var oListCoordinates = document.getElementById('GamesList');
+              var oListCoordinates = document.getElementById('locationList');
               var entry = document.createElement('li'); // a list element to be added to the ordered list
               entry.appendChild(document.createTextNode(displayLocations));
               oListCoordinates.appendChild(entry);
@@ -202,7 +202,7 @@
 
         function searchArray(){
 
-            document.getElementById("GamesList").innerHTML = "";
+            document.getElementById("locationList").innerHTML = "";
 
             var seekPostalCode = document.getElementById("postalcode").value;
 
@@ -259,7 +259,7 @@
 
                             // add in a node because we have a match
                             var displayPCtoAddress = JSON.stringify(returnLocArr[j].lat);
-                            var oListCoordinates = document.getElementById('GamesList');
+                            var oListCoordinates = document.getElementById('locationList');
                             var entry = document.createElement('li'); // a list element to be added to the ordered list
                             entry.appendChild(document.createTextNode(displayPCtoAddress));
                             oListCoordinates.appendChild(entry);

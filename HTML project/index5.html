@@ -1,0 +1,277 @@
+<!-- Welcome to some sample code to control your Firebase Database -->
+<!-- HERE IS YOUR HTML TO SET UP YOUR PAGE -->
+<html>
+    <head>
+        <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        
+        <style> 
+
+            ul {
+                overflow-x:hidden;
+                white-space:nowrap;
+                display:inline;
+            }
+
+            li {
+                display:inline;
+            }
+
+            label {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+		<h1 id="uid"></h1>
+
+		
+		<p id="header" > WELCOME: <button onclick = "signin()" >Sign In</button> 
+
+		<button onclick = "setLocationCoordinates()" >Set Data</button></p>
+        <button onclick = "getLocationData()" >Addresses</button></p>
+        <button onclick = "getLatData()" >Latitudes</button></p>
+        <button onclick = "getLngData()" >Longitides</button></p> 
+        <button onclick = "getCarData()" >Cars</button></p>
+        
+
+    	<div><label>Current Address:</label><ul id="locationList"></ul></div>
+        <div><label>Current Latitude:</label><ul id="latList"></ul></div>
+        <div><label>Current Longitude:</label><ul id="lngList"></ul></div>
+        <div><label>Current Car List:</label><ul id="carList"></ul></div>
+
+            
+    </body>
+    
+    <!-- HERE IS THE JAVASCRIPT TO CONNECT TO YOUR FIREBASE -->
+    <script>
+
+      
+        // Variables created here to be used throughout the program
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+        var userId = document.getElementById("uid").innerHTML;
+        
+        // Your web app's Firebase configuration that we copy-and-paste from 
+        // the Firebase setup
+        var config = {
+
+           //// Permissions needed here ////
+
+              apiKey: "AIzaSyAPy7joMz9hp3CgPDWPojKWgZuy-zgCafA",
+              authDomain: "ucc2019-c4356.firebaseapp.com",
+              databaseURL: "https://ucc2019-c4356.firebaseio.com",
+              projectId: "ucc2019-c4356",
+              storageBucket: "ucc2019-c4356.appspot.com",
+              messagingSenderId: "249719458248",
+              appId: "1:249719458248:web:fe25dbba19cd96ce4358fd",
+              measurementId: "G-69JN1S8375"
+              
+        };
+
+        firebase.initializeApp(config);
+        //firebase.analytics();
+
+        // Authentication Check: to see if you are logged in
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user == null) {
+                document.getElementById("uid").innerHTML = "not logged in";
+                return;
+            } else {
+                userId = user.uid; // you can also get .displayName, .photoURL, .email
+                document.getElementById("uid").innerHTML = userId; // display Google uid on page
+                
+            } // end user null check
+        }); // end check auth state
+
+
+        // Functions that will be used to "get" and "set" data, among other "helper"
+        // functions too...
+
+        function signin() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider).then(function(result) { 
+                window.location.replace("fbtest.html");
+            });
+        } // end signin 
+
+
+        /* We only need to set data if there has been a change latitude-longitude database */
+
+        function setLocationCoordinates() {
+
+            // Create a database object that we can refer to
+            var db1 = firebase.database();
+            
+            // Create a reference to a particular location or "node" called StudentInfo
+            var refGTA = db1.ref('LocationCoordinates/Toronto');
+
+            var loc1 = {
+
+                address: "120 Yonge", 
+                lat: 43.724920, 
+                lng: -79.449340, 
+                cars: {
+                    car1:"Ford",
+                    car2:"BMW",
+                    car3:"Fiat"
+                }
+            }
+
+            // var loc2 = {address: "121 Yonge", lat: 43.726483, lng: -79.452977}
+            // var loc3 = {address: "122 Yonge", lat: 43.638660, lng: -79.385712}
+            // var loc4 = {address: "123 Yonge", lat: -33.848588, lng: 151.209834}
+            // var loc5 = {address: "123 Yonge", lat: -33.851702, lng: 151.216968}
+
+            refGTA.push(loc1);
+            //refGTA.push(loc2);
+            //refGTA.push(loc3);
+            //refGTA.push(loc4);
+            //refGTA.push(loc5);
+            
+
+            
+        } // end setdata
+
+        
+        function getLocationData() {
+
+            document.getElementById("locationList").innerHTML = "";
+
+            var db1 = firebase.database();
+            var refGetGTA1 = db1.ref('LocationCoordinates/Toronto');
+            refGetGTA1.on('value', getLocationValues, errData) 
+
+        } // end getdata
+
+        function getLocationValues(data){
+
+            // collect all of the unique objects ('keys' or id's) out of the database
+            var allData = data.val(); // access the data 'value' of each student 'object' 
+            var keys = Object.keys(allData);
+            console.log(keys);
+
+            // iterate through the unique object id's and grab data fields: 'name', 'subject', 'mark'
+            for (var i = 0; i < keys.length; i++){
+              var k = keys[i];
+              var k_address = allData[k].address;
+              var addressData = JSON.stringify(k_address);
+              var oList = document.getElementById('locationList');
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(addressData));
+              oList.appendChild(entry);
+
+            }
+
+        }
+
+        function getLatData() {
+
+            document.getElementById("latList").innerHTML = "";
+
+            var db1 = firebase.database();
+            var refGetGTA1 = db1.ref('LocationCoordinates/Toronto');
+            refGetGTA1.on('value', getLatValues, errData) 
+
+        } // end getdata
+
+        function getLatValues(data){
+           
+            // collect all of the unique objects ('keys' or id's) out of the database
+            var allData = data.val(); // access the data 'value' of each student 'object' 
+            var keys = Object.keys(allData);
+            console.log(keys);
+
+            // iterate through the unique object id's and grab data fields: 'name', 'subject', 'mark'
+            for (var i = 0; i < keys.length; i++){
+              var k = keys[i];
+              var k_lat = allData[k].lat;
+              var latData = JSON.stringify(k_lat);
+              var oList = document.getElementById('latList');
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(latData));
+              oList.appendChild(entry);
+
+            }
+
+        }
+
+        function getLngData() {
+
+            document.getElementById("lngList").innerHTML = "";
+
+            var db1 = firebase.database();
+            var refGetGTA1 = db1.ref('LocationCoordinates/Toronto');
+            refGetGTA1.on('value', getLngValues, errData) 
+
+        } // end getdata
+
+        function getLngValues(data){
+           
+            // collect all of the unique objects ('keys' or id's) out of the database
+            var allData = data.val(); // access the data 'value' of each student 'object' 
+            var keys = Object.keys(allData);
+            console.log(keys);
+
+            // iterate through the unique object id's and grab data fields: 'name', 'subject', 'mark'
+            for (var i = 0; i < keys.length; i++){
+              var k = keys[i];
+              var k_lng = allData[k].lng;
+              var lngData = JSON.stringify(k_lng);
+              var oList = document.getElementById('lngList');
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(lngData));
+              oList.appendChild(entry);
+
+            }
+
+        }
+
+        function getCarData() {
+
+            document.getElementById("carList").innerHTML = "";
+
+            var db1 = firebase.database();
+            var refGetGTA1 = db1.ref('LocationCoordinates/Toronto');
+            refGetGTA1.on('value', getCarValues, errData) 
+
+        } // end getdata
+
+        function getCarValues(data){
+
+            // collect all of the unique objects ('keys' or id's) out of the database
+            var allData = data.val(); // access the data 'value' of each student 'object' 
+            var keys = Object.keys(allData);
+            console.log(keys);
+
+            // iterate through the unique object id's and grab data fields: 'name', 'subject', 'mark'
+            for (var i = 0; i < keys.length; i++){
+              var k = keys[i];
+              var k_cars = allData[k].cars;
+              var carData = JSON.stringify(k_cars);
+              var oList = document.getElementById('carList');
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(carData));
+              oList.appendChild(entry);
+
+            }
+
+        }
+
+        function errData(err){
+            console.log('Error!')
+            console.log(err)
+        }
+
+    </script>
+</html>

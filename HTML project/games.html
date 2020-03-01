@@ -1,8 +1,7 @@
-
 <html>
 
     <head>
-      <Title>Draft</Title>
+      <Title>Games</Title>
       <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
       <!-- The core Firebase JS SDK is always required and must be listed first -->
       <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
@@ -45,6 +44,35 @@
           .navbar a:hover {
             background-color: red;
           }
+          .item1 { grid-area: header; }
+        .item2 { grid-area: menu; }
+        .item3 { grid-area: left; }
+        .item4 { grid-area: main; }
+        .item5 { grid-area: right; }
+        .item6 {grid-area: foot;}
+        
+
+            .grid-container {
+              display: grid;
+              grid-template-areas:
+                'header header header header header header '
+                'menu main main main main right '
+                'menu main main main main right '
+                
+                ;
+              grid-gap: 10px;
+              height: 100%;
+              background-color: #333; 
+              padding: 10px;
+            }
+
+            .grid-container > div {
+              background-color: #ccc;
+              text-align: center;
+              padding: 20px 0;
+              font-size: 30px;
+            }
+          
 
     </style>
 
@@ -62,12 +90,24 @@
         </div>
       </div>
 
+      <div class="grid-container">
+       
+        <div class="item1">
+          
             <h1 id="uid"></h1>
+        </div>
             
             <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
            
             <!-- this button displays the players in the database.-->
-            <button onclick = "getData()"  >Click to see upcoming games</button>
+            <!--<button onclick = "getData()"  >Click to see upcoming games</button-->
+            
+            <div class="item2">
+            <button onclick = "getData2()"  >January 27 2020 games</button>
+          </div>
+          <div class="item5">
+            <button onclick = "getData3()"  >January 28 2020 games</button>
+          </div>
 
             
             
@@ -75,11 +115,15 @@
           
 
             
-
+<div class="item4">
             <p>Upcoming Games:</p>
 
             <!-- ol means ordered list -->
-            <p><ol id="List"></ol></p>    
+            <p><ol id="List"></ol></p> 
+                      </div>
+  
+
+            </div> 
                  
     </body>
     
@@ -120,7 +164,7 @@
                 return;
             } else {
                 userId = user.uid; // you can also get .displayName, .photoURL, .email
-                document.getElementById("uid").innerHTML = userId; // display Google uid on page
+                document.getElementById("uid").innerHTML = 'Logged in'; // display Google uid on page
                 
             } // end user null check
         }); // end check auth state
@@ -144,20 +188,99 @@
 
             // Create a reference to a particular location or "node"
             // 'StudentInfo'is the name of the main branch in the database
+            //var refdate1 = database.ref('/schedule/January 27 2020');
             var refdate = database.ref('/schedule');
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            //var rerdate2 = database.ref('/schedule/January 28 2020')
             
            
             //var ref = database.ref('/schedule/January 28 2020');
 
+            //console.log(refdate2)
+            //console.log(refdate1)
             console.log(refdate)
+            //console.log(refdate1)
+            //console.log(refdate2)
+            
             
             
 
             // we will make reference to each 'value' of a database object which will have 
             // two helper functions latched "on" to it to perform additional tasks 
             // - either we have access to data values, or we don't and there is an error
-
             refdate.on('value', gotData, errData) 
+            //refdate1.on('value', gotData, errData) 
+            //refdate2.on('value', gotData, errData) 
+            
+            // jump to the helper function...think of 'value' as the parameter that is passed
+
+        } // end getdata
+
+        function getData2() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node"
+            // 'StudentInfo'is the name of the main branch in the database
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            
+            var refdate2 = database.ref('/schedule/January 27 2020');
+            //var rerdate2 = database.ref('/schedule/January 28 2020')
+            
+           
+            //var ref = database.ref('/schedule/January 28 2020');
+
+            //console.log(refdate2)
+            //console.log(refdate1)
+            console.log(refdate2)
+            //console.log(refdate1)
+            //console.log(refdate2)
+            
+            
+            
+
+            // we will make reference to each 'value' of a database object which will have 
+            // two helper functions latched "on" to it to perform additional tasks 
+            // - either we have access to data values, or we don't and there is an error
+            refdate2.on('value', gotData, errData) 
+            //refdate1.on('value', gotData, errData) 
+            //refdate2.on('value', gotData, errData) 
+            
+            // jump to the helper function...think of 'value' as the parameter that is passed
+
+        } // end getdata
+
+        function getData3() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node"
+            // 'StudentInfo'is the name of the main branch in the database
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            var refdate3 = database.ref('/schedule/January 28 2020')
+            
+           
+            //var ref = database.ref('/schedule/January 28 2020');
+
+            //console.log(refdate2)
+            //console.log(refdate1)
+            console.log(refdate3)
+            //console.log(refdate1)
+            //console.log(refdate2)
+            
+            
+            
+
+            // we will make reference to each 'value' of a database object which will have 
+            // two helper functions latched "on" to it to perform additional tasks 
+            // - either we have access to data values, or we don't and there is an error
+            refdate3.on('value', gotData, errData) 
+            //refdate1.on('value', gotData, errData) 
+            //refdate2.on('value', gotData, errData) 
             
             // jump to the helper function...think of 'value' as the parameter that is passed
 

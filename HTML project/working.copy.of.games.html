@@ -1,8 +1,7 @@
-
 <html>
 
     <head>
-      <Title>Draft</Title>
+      <Title>Games</Title>
       <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
       <!-- The core Firebase JS SDK is always required and must be listed first -->
       <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
@@ -11,21 +10,22 @@
       <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script> 
       
+
+
       <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
     
     <style>
       
-     body {
+      body {
             font-family: Arial, Helvetica, sans-serif;
             margin-top: 0px;
             margin-left: 0px;
             margin-right: 0px;
-
-            
           }
 
-         .navbar {
+          .navbar {
           overflow: hidden;
           width: 100%;
           background-color: #333;
@@ -45,39 +45,6 @@
             background-color: red;
           }
 
-        .item1 { grid-area: header; }
-        .item2 { grid-area: menu; }
-        .item3 { grid-area: left; }
-        .item4 { grid-area: main; }
-        .item5 { grid-area: right; }
-        
-
-            .grid-container {
-              display: grid;
-              grid-template-areas:
-
-                'header header header header header header'
-                'menu main main main right right'
-                'left main main main right right'
-
-                ;
-              grid-gap: 10px;
-              height:120vh;
-              background-color: #333; 
-              padding: 10px;
-            }
-
-            .grid-container > div {
-              background-color: #ccc;
-              text-align: center;
-              padding: 20px ;
-              font-size: 30px;
-
-            }
-
-      
-
-
     </style>
 
 
@@ -89,53 +56,31 @@
         <div>
              <a href="index.html">Back</a>
         </div>
-
         <div>
-          <p style= "color:white; text-align:center">Welcome to the Draft Page</p>
+          <p style= "color:white; text-align:center "> Welcome to the Games Page</p>
         </div>
       </div>
 
-      <div class="grid-container">
-        <div class="item1">
-
             <h1 id="uid"></h1>
-        </div>
-            
-             
-                 
             
             <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
-            <!--<h3>Please select who you would like to draft</h3>-->
-            <!-- this button displays the players in the database.-->
-            <div class="item2">
-            <button onclick = "getData()" >Click to see available players</button>
-        </div>
-<!-- What does the signin button do? -->
-            <!--<button onclick = "signin()" >Sign In</button>-->
-
-        <div class="item4">
-            <p>Enter the name of the players you would like to draft</p>
            
-            <input type="text" id="playerInput1" placeholder="Enter player" name="player">
-            <input type="text" id="playerInput2" placeholder="Enter player" name="player">
-            <input type="text" id="playerInput3" placeholder="Enter player" name="player">
-            <input type="text" id="playerInput4" placeholder="Enter player" name="player">
-            <input type="text" id="playerInput5" placeholder="Enter player" name="player">
+            <!-- this button displays the players in the database.-->
+            <button onclick = "getData()"  >Click to see upcoming games</button>
+            <button onclick = "getData2()"  >Click to see upcoming games</button>
+            <button onclick = "getData3()"  >Click to see upcoming games</button>
 
-            <button onclick = "setData()" >Draft Players</button>
-        </div>
-<div class="item3">
-            <p>Available Players</p>
+            
+            
+           
+          
+
+            
+
+            <p>Upcoming Games:</p>
 
             <!-- ol means ordered list -->
-            <p><ol id="playerList"></ol></p>
-        </div>
-
-        <div class="item5">
-            <div>This is your team</div>
-            <div style="font-size:16 "id="team">
-            </div>
-        </div>
+            <p><ol id="List"></ol></p>    
                  
     </body>
     
@@ -173,12 +118,10 @@
         firebase.auth().onAuthStateChanged(function(user) {
             if (user == null) {
                 document.getElementById("uid").innerHTML = "not logged in";
-
                 return;
             } else {
                 userId = user.uid; // you can also get .displayName, .photoURL, .email
-                //document.getElementById("uid").innerHTML = userId; // display Google uid on page
-                document.getElementById("uid").innerHTML = "Logged in"; 
+                document.getElementById("uid").innerHTML = userId; // display Google uid on page
                 
             } // end user null check
         }); // end check auth state
@@ -194,56 +137,6 @@
             });
         } // end signin 
 
-        function setData() {
-
-            // Create a database object that we can refer to
-            var database = firebase.database();
-
-            // Create a reference to a particular location or "node" called StudentInfo
-            var ref = database.ref('PlayerInfo');
-
-            // Grab the Name, Subject, and Grade obtained from the HTML frontend textboxes
-            var splayer1 = document.getElementById("playerInput1").value;
-            var splayer2 = document.getElementById("playerInput2").value;
-            var splayer3 = document.getElementById("playerInput3").value;
-            var splayer4 = document.getElementById("playerInput4").value;
-            var splayer5 = document.getElementById("playerInput5").value;
-            
-            // Create a JSON "team" object to add to the database with user-inputted data
-            var team = {
-
-                firstPlayer: splayer1,
-                secondPlayer: splayer2,
-                thirdPlayer: splayer3,
-                fourthPlayer: splayer4,
-                fifthPlayer: splayer5,
-            }
-            // "PUSH" means we add something to the database
-
-
-            ref.push(team);
-
-            const newH1 = document.createElement("h1");
-            newH1.innerHTML = splayer1;
-            document.getElementById("team").appendChild(newH1);
-
-            const newH2 = document.createElement("h1");
-            newH2.innerHTML = splayer2;
-            document.getElementById("team").appendChild(newH2);
-
-            const newH3 = document.createElement("h1");
-            newH3.innerHTML = splayer3;
-            document.getElementById("team").appendChild(newH3);
-
-            const newH4 = document.createElement("h1");
-            newH4.innerHTML = splayer4;
-            document.getElementById("team").appendChild(newH4);
-
-            const newH5 = document.createElement("h1");
-            newH5.innerHTML = splayer5;
-            document.getElementById("team").appendChild(newH5);
-
-        } // end setdata
 
         function getData() {
 
@@ -252,22 +145,112 @@
 
             // Create a reference to a particular location or "node"
             // 'StudentInfo'is the name of the main branch in the database
-            var ref = database.ref('/players');
-            console.log(ref)
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            var refdate = database.ref('/schedule');
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            //var rerdate2 = database.ref('/schedule/January 28 2020')
+            
+           
+            //var ref = database.ref('/schedule/January 28 2020');
+
+            //console.log(refdate2)
+            //console.log(refdate1)
+            console.log(refdate)
+            //console.log(refdate1)
+            //console.log(refdate2)
+            
+            
+            
 
             // we will make reference to each 'value' of a database object which will have 
             // two helper functions latched "on" to it to perform additional tasks 
             // - either we have access to data values, or we don't and there is an error
-
-            ref.on('value', gotData, errData) 
+            refdate.on('value', gotData, errData) 
+            //refdate1.on('value', gotData, errData) 
+            //refdate2.on('value', gotData, errData) 
+            
             // jump to the helper function...think of 'value' as the parameter that is passed
 
         } // end getdata
 
+        function getData2() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node"
+            // 'StudentInfo'is the name of the main branch in the database
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            
+            var refdate2 = database.ref('/schedule/January 27 2020');
+            //var rerdate2 = database.ref('/schedule/January 28 2020')
+            
+           
+            //var ref = database.ref('/schedule/January 28 2020');
+
+            //console.log(refdate2)
+            //console.log(refdate1)
+            console.log(refdate2)
+            //console.log(refdate1)
+            //console.log(refdate2)
+            
+            
+            
+
+            // we will make reference to each 'value' of a database object which will have 
+            // two helper functions latched "on" to it to perform additional tasks 
+            // - either we have access to data values, or we don't and there is an error
+            refdate2.on('value', gotData, errData) 
+            //refdate1.on('value', gotData, errData) 
+            //refdate2.on('value', gotData, errData) 
+            
+            // jump to the helper function...think of 'value' as the parameter that is passed
+
+        } // end getdata
+
+        function getData3() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node"
+            // 'StudentInfo'is the name of the main branch in the database
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            
+            //var refdate1 = database.ref('/schedule/January 27 2020');
+            var refdate3 = database.ref('/schedule/January 28 2020')
+            
+           
+            //var ref = database.ref('/schedule/January 28 2020');
+
+            //console.log(refdate2)
+            //console.log(refdate1)
+            console.log(refdate3)
+            //console.log(refdate1)
+            //console.log(refdate2)
+            
+            
+            
+
+            // we will make reference to each 'value' of a database object which will have 
+            // two helper functions latched "on" to it to perform additional tasks 
+            // - either we have access to data values, or we don't and there is an error
+            refdate3.on('value', gotData, errData) 
+            //refdate1.on('value', gotData, errData) 
+            //refdate2.on('value', gotData, errData) 
+            
+            // jump to the helper function...think of 'value' as the parameter that is passed
+
+        } // end getdata
+
+       
+
+
+
         function gotData(data){
 
             // clear items from previously created lists
-            document.getElementById("playerList").innerHTML = "";
+            document.getElementById("List").innerHTML = "";
             
             // collect all of the unique objects ('keys' or id's) out of the database
             var listOfPlayers = data.val(); // access the data 'value' of each student 'object' 
@@ -279,9 +262,14 @@
               console.log(k);
               var entry = document.createElement('li'); // a list element to be added to the ordered list
               entry.appendChild(document.createTextNode(k));
-              playerList.appendChild(entry);
+              List.appendChild(entry);
 
             }//end for loop
+
+
+           
+
+            
               
               // AJ: we only need to send information to the console window when we
               // are debugging our code of errors

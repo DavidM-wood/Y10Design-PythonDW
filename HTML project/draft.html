@@ -105,13 +105,12 @@
                  
             
             <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
-            <!--<h3>Please select who you would like to draft</h3>-->
             <!-- this button displays the players in the database.-->
             <div class="item2">
             <button onclick = "getData()" >Click to see available players</button>
         </div>
-<!-- What does the signin button do? -->
-            <!--<button onclick = "signin()" >Sign In</button>-->
+
+            
 
         <div class="item4">
             <p>Enter the name of the players you would like to draft</p>
@@ -176,8 +175,7 @@
 
                 return;
             } else {
-                userId = user.uid; // you can also get .displayName, .photoURL, .email
-                //document.getElementById("uid").innerHTML = userId; // display Google uid on page
+                userId = user.uid; 
                 document.getElementById("uid").innerHTML = "Logged in"; 
                 
             } // end user null check
@@ -247,20 +245,15 @@
 
         function getData() {
 
-            // Create a database object that we can refer to
             var database = firebase.database();
 
-            // Create a reference to a particular location or "node"
-            // 'StudentInfo'is the name of the main branch in the database
+            
             var ref = database.ref('/players');
             console.log(ref)
 
-            // we will make reference to each 'value' of a database object which will have 
-            // two helper functions latched "on" to it to perform additional tasks 
-            // - either we have access to data values, or we don't and there is an error
+            
 
             ref.on('value', gotData, errData) 
-            // jump to the helper function...think of 'value' as the parameter that is passed
 
         } // end getdata
 
@@ -270,7 +263,7 @@
             document.getElementById("playerList").innerHTML = "";
             
             // collect all of the unique objects ('keys' or id's) out of the database
-            var listOfPlayers = data.val(); // access the data 'value' of each student 'object' 
+            var listOfPlayers = data.val(); 
             var keys = Object.keys(listOfPlayers);
             console.log(keys);
             
@@ -283,10 +276,7 @@
 
             }//end for loop
               
-              // AJ: we only need to send information to the console window when we
-              // are debugging our code of errors
-              // console.log (keys[i]);
-              // console.log (subject);
+             
 
             }
     

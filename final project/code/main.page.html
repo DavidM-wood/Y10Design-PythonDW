@@ -118,14 +118,37 @@ b.flip-box:hover .flip-box-inner {
   transform: rotateY(180deg);
 }
 
-.flip-box1{
-  float:left;
-}
-.flip-box2{
-float:right;}
-.flip-box3{
-  float:left;
-}
+
+
+        .item1 { grid-area: left; }
+        .item2 { grid-area: middle; }
+        .item3 { grid-area: right; }
+        .item4 { grid-area: space;}
+        .item5 { grid-area: text; }
+
+
+         .grid-container {
+              display: grid;
+              grid-template-areas:
+
+                'left left middle middle right right'
+                
+
+
+                ;
+              grid-gap: 10px;
+              height:10vh;
+              background-color: white; 
+              padding: 10px;
+            }
+
+            .grid-container  {
+              background-color: white;
+              text-align: center;
+              padding: 10px ;
+              
+
+            }
 	</style>
 </head>
 	<body>
@@ -133,7 +156,11 @@ float:right;}
 		   <!--<input  type="image" src="download.png" name="saveForm" class="btTxt submit" id="saveForm" /-->
 		   
 		   
-         
+         <div style="text-align: center">Hover over the images for more details</div>
+         <br></br>
+
+         <div class="grid-container">
+        <div class="item1">
           <div class="flip-box">
   <div class="flip-box-inner">
     <div class="flip-box-front">
@@ -152,11 +179,16 @@ float:right;}
     </div>
   </div>
 </div>
+</div>
 
-     <div class="flip-box">
+
+ 
+         
+        <div class="item2">
+          <div class="flip-box">
   <div class="flip-box-inner">
     <div class="flip-box-front">
-        <h> Evolution fo the Skates</h>
+        <h> Evolution fo the skates</h>
       <div class="flip-box1">
        <img alt="images" src="skates.jpg"  >
     </div>
@@ -165,15 +197,23 @@ float:right;}
       
 
  <div class="flip-box-back">
-  <h2>Click Here</h2>
+  <a href="skates.html" style=" color:white;">Click Here</a>
+  <p> Skates have seen a lot of evolution. They started off as a shoe with a blade strapped to it and now they are an extremely stiff kevlar-carbon fibre boot.</p>
+
     </div>
   </div>
 </div>
+</div>
 
-       <div class="flip-box">
+
+ 
+
+ 
+        <div class="item3">
+          <div class="flip-box">
   <div class="flip-box-inner">
     <div class="flip-box-front">
-        <h> Evolution fo the Helmet</h>
+        <h> Evolution fo the helmet</h>
       <div class="flip-box1">
        <img alt="images" src="helmet.jpg"  >
     </div>
@@ -182,11 +222,49 @@ float:right;}
       
 
  <div class="flip-box-back">
-  <h2>Click Here</h2>
+  <a href="hockeystick.html" style=" color:white;">Click Here</a>
+  <p> The helmet started off as nothing to a now a life-saving device. In the early days of hockey, players didn’t wear helmets. It wasn’t until 1979 that wearing a helmet was mandatory.</p>
+
     </div>
   </div>
 </div>
+</div>
+</div>
 
-  <div class="dropdown">
+<br>
+</br>
+<br>
+</br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+<div class="item5" style="text-indent:100px ;">
+
+The game of hockey has evolved tremendously. It was first played on a frozen pond with no boards or nets or glass or lines. It was later played on an outdoor rink with boards and two nets with bluelines, a red line, and caging at the ends if you were lucky. Now arenas almost anything you can imagine and professional arenas can fit upwards of 20,000 people. The game itself has changed a lot as well. The game used to be slow and extremely physical and “dirty” compared to today’s standards. There were fewer penalties and fights were more common. Once the introduction of the helmet entered the NHL, the games became even more physical but also faster. Now the game is slightly less physical and more penalties are called to keep the game “clean” but hockey has become extremely fast. Players are skating upwards of 40km/h. 
+
+
+</div>
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+     
+
+
+ 
+
 	</body>
 </html>
